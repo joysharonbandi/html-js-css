@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model Examples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .example-container {
+            margin-bottom: 40px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007acc;
+            padding-bottom: 10px;
+        }
+        
+        /* Example 1: Visual Box Model */
+        .box-model-demo {
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            border: 10px solid #ff6b6b;
+            margin: 30px;
+            background-color: #4ecdc4;
+            position: relative;
+        }
+        
+        .box-labels {
+            position: absolute;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .margin-label {
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #e74c3c;
+        }
+        
+        .border-label {
+            top: -5px;
+            left: -5px;
+            color: #ff6b6b;
+        }
+        
+        .padding-label {
+            top: 15px;
+            left: 15px;
+            color: #2c3e50;
+        }
+        
+        .content-label {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        /* Example 2: Different Box Sizes */
+        .size-comparison {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .no-extras {
+            /* Just width and height */
+        }
+        
+        .with-padding {
+            padding: 20px;
+        }
+        
+        .with-border {
+            border: 10px solid #e67e22;
+            box-sizing: content-box;
+        }
+        
+        .with-margin {
+            margin: 20px;
+        }
+        
+        .everything {
+            padding: 15px;
+            border: 5px solid #9b59b6;
+            margin: 15px;
+        }
+        
+        /* Example 3: Box-sizing comparison */
+        .box-sizing-demo {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .content-box {
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            border: 10px solid #1abc9c;
+            background-color: #ecf0f1;
+            box-sizing: content-box;
+        }
+        
+        .border-box {
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            border: 10px solid #f39c12;
+            background-color: #ecf0f1;
+            box-sizing: border-box;
+        }
+        
+        .code-example {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .highlight {
+            background-color: #f1c40f;
+            color: #2c3e50;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Box Model Teaching Examples</h1>
+    
+    <div class="example-container">
+        <h2>1. The Four Parts of Every Box</h2>
+        <p>Every HTML element has four parts:</p>
+        <div style="position: relative; display: inline-block;">
+            <div class="box-model-demo">
+                <div class="box-labels margin-label">Margin</div>
+                <div class="box-labels border-label">Border</div>
+                <div class="box-labels padding-label">Padding</div>
+                <div class="box-labels content-label">Content</div>
+            </div>
+        </div>
+        <ul>
+            <li><strong>Content:</strong> The actual text or image (teal area)</li>
+            <li><strong>Padding:</strong> Space between content and border</li>
+            <li><strong>Border:</strong> The red outline around the element</li>
+            <li><strong>Margin:</strong> Space outside the border, separating from other elements</li>
+        </ul>
+    </div>
+    
+    <div class="example-container">
+        <h2>2. How Each Part Affects Size</h2>
+        <p>Notice how adding padding, border, and margin makes boxes take up more space:</p>
+        <div class="size-comparison">
+            <div class="box no-extras">100x100<br>No extras</div>
+            <div class="box with-padding">100x100<br>+ Padding</div>
+            <div class="box with-border">100x100<br>+ Border</div>
+            <div class="box with-margin">100x100<br>+ Margin</div>
+            <div class="box everything">100x100<br>+ All</div>
+        </div>
+        <p><em>All boxes have width: 100px and height: 100px, but they take up different amounts of space!</em></p>
+    </div>
+    
+    <div class="example-container">
+        <h2>3. Box-sizing Property</h2>
+        <p>This property changes how width and height are calculated:</p>
+        
+        <div class="box-sizing-demo">
+            <div>
+                <h4>content-box (default)</h4>
+                <div class="content-box"></div>
+                <p>Width = content only<br>
+                Total width = 200 + 40 + 20 = <span class="highlight">260px</span></p>
+            </div>
+            
+            <div>
+                <h4>border-box</h4>
+                <div class="border-box"></div>
+                <p>Width = content + padding + border<br>
+                Total width = <span class="highlight">200px exactly</span></p>
+            </div>
+        </div>
+        
+        <div class="code-example">
+/* content-box (default) */
+.content-box {
+    width: 200px;
+    padding: 20px;    /* adds to width */
+    border: 10px;     /* adds to width */
+    box-sizing: content-box;
+}
+
+/* border-box */
+.border-box {
+    width: 200px;     /* total width stays 200px */
+    padding: 20px;    /* included in width */
+    border: 10px;     /* included in width */
+    box-sizing: border-box;
+}
+        </div>
+    </div>
+    
+    <div class="example-container">
+        <h2>4. Simple Exercise</h2>
+        <p>Try to predict: What's the total width of this element?</p>
+        <div class="code-example">
+.mystery-box {
+    width: 150px;
+    padding: 25px;
+    border: 5px solid red;
+    margin: 10px;
+    box-sizing: content-box;
+}
+        </div>
+        <p><strong>Answer:</strong> 150 + 50 (padding) + 10 (border) = <span class="highlight">210px total width</span><br>
+        <em>Note: Margin doesn't affect the element's width, just the space around it.</em></p>
+    </div>
+</body>
+</html>
