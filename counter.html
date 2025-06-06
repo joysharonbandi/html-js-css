@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Counter</title>
+    </head>
+
+    <body>
+        
+
+        <div class="count" id="count"></div>
+        <button id="counter">Increment</button>
+
+        <script>
+            let countValue =0;
+            const button=document.getElementById("counter")
+            const count=document.getElementById("count")
+            function increment(){
+                countValue=countValue+1
+                 count.textContent=countValue
+
+               
+
+                console.log(decrement())
+
+                 return countValue
+            }
+
+            function decrement(){
+                let test=0
+                test=test+1
+                // countValue=countValue-1
+                    // count.textContent=countValue
+
+                    return test
+            }
+
+            button.addEventListener("click",increment)
+        </script>
+    </body>
+</html>
