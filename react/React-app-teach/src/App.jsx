@@ -4,6 +4,7 @@ import './App.css'
 import { Count } from './components/Count'
 import { Test } from './components/Test'
 import Profile from './components/Profile'
+import Form from './components/Form'
 
 
 const skills=["react","javascript","node","mongodb","express","postgresql"]
@@ -54,24 +55,8 @@ const test =()=>{
   return (  
     <>
 
-   {show? <Profile firstName={"joy"} lastName={"sharon"} count={count} increment={()=>{
-      setCount(count+1)
-    }}/> : <div>No Profile Shown</div>}
-
-    <ul>
-     {skills.map((item,index)=>{
-
-      const name=item.toUpperCase()
-      return <li>{name}</li>
-     })}
-    </ul>
-
-    <input type='checkbox' onChange={(e)=>{
-
-      setShow(e.target.checked)
-      console.log(e.target.checked,"checked")
-    }}/>
-    
+   
+    <Form/>
     </>
   )
 }
