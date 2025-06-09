@@ -1,64 +1,36 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import './App.css'
-import { Count } from './components/Count'
-import { Test } from './components/Test'
-import Profile from './components/Profile'
-import Form from './components/Form'
+import "./App.css";
+import { Count } from "./components/Count";
+import { Test } from "./components/Test";
+import Profile from "./components/Profile";
+import Form from "./components/Form";
+import { AppRoutes } from "./routes/Routes";
+import { UserProvider } from "./contexts/UserContext";
+import HomePage from "./components/HomePage";
+import { useCounter } from "./hooks/useCounter";
+import StudentProfile from "./components/StudentProfile";
 
-
-const skills=["react","javascript","node","mongodb","express","postgresql"]
 function App() {
-const [count,setCount]=useState(0)
-const [show,setShow]=useState(false)
+  const [user,setUser]=useState({name:'joy',role:'admin',email:"joysharon@email.com"})
 
-// if(show){
-//  return(<div>
-
-//   <Profile firstName={"joy"} lastName={"sharon"} count={count} increment={()=>{
-//       setCount(count+1)
-//     }}/>
-
-//      <input type='checkbox' onChange={(e)=>{
-
-//       setShow(e.target.checked)
-//       console.log(e.target.checked,"checked")
-//     }}/>
-    
-//  </div> 
-//   )
-// }
-
-// else{
-//   return (
-//     <div>
-//       <div>No Profile Shown</div>
-
-//     <input type='checkbox' onChange={(e)=>{
-
-//       setShow(e.target.checked)
-//       console.log(e.target.checked,"checked")
-//     }}/>
-    
-//     </div>
-//   )
-// }
+ const countVales=useCounter(0,2)
 
 
-// function test (){
 
-// }
-
-const test =()=>{
-
-}
-  return (  
+ 
+  return (
     <>
-
+      <UserProvider>
+        <AppRoutes/>
    
-    <Form/>
+      {/* <Test /> */}
+      </UserProvider>
+      
+  
+      {/* <Form/> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
