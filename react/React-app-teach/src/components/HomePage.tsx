@@ -13,14 +13,8 @@ const [count,setCount]=useState(0)
 
 
   return (
-    <div><Count count={count} increment={()=>{
-      setCount(user?.count+1)
-    }}/>
-
-    {/* Inside the Count {user?.user?.name}
-    
-    <div>Count number is {user?.count}</div>
-  */}
+    <div>
+      Home Page
     </div>
   )
 }

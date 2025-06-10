@@ -10,26 +10,16 @@ import { UserProvider } from "./contexts/UserContext";
 import HomePage from "./components/HomePage";
 import { useCounter } from "./hooks/useCounter";
 import StudentProfile from "./components/StudentProfile";
+import { TaskProvider } from "./contexts/TaskContext";
 
 function App() {
-  const [user,setUser]=useState({name:'joy',role:'admin',email:"joysharon@email.com"})
-
- const countVales=useCounter(0,2)
-
-
-
- 
   return (
-    <>
-      <UserProvider>
-        <AppRoutes/>
-   
-      {/* <Test /> */}
-      </UserProvider>
-      
-  
-      {/* <Form/> */}
-    </>
+    <div className="h-screen  ">
+      <TaskProvider>
+      <AppRoutes />
+      </TaskProvider>
+    
+    </div>
   );
 }
 
