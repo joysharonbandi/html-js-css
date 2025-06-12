@@ -9,7 +9,7 @@ export default function AddTasks() {
 
 //   console.log(tasks, "tasks");
   return (
-    <div className="">
+    <div className="flex justify-center items-center h-full w-full ">
       <form
         className="flex flex-col justify-center gap-2 border-1 border-black p-4"
         onSubmit={(e) => {
@@ -22,17 +22,19 @@ export default function AddTasks() {
           console.log(task, desc, priority, status);
 
           setTasks((prev) => {
-            return [
-              ...prev,
-              {
-                id: prev.length + 1,
-                title: task,
-                description: desc,
-                status,
-                priority,
-              },
-            ];
-          });
+
+            
+              return [
+                ...prev,
+                {
+                  id: prev.length + 1,
+                  title: task,
+                  description: desc,
+                  status,
+                  priority,
+                },
+              ];
+            });
 
           navigate("/tasks")
         }}
@@ -56,7 +58,9 @@ export default function AddTasks() {
           <option value={"pending"}>Pending</option>
           <option value={"completed"}>Completed</option>
         </select>
-        <button type="submit" className="bg-blue-700 text-white">
+        <button type="submit" className="bg-blue-700 text-white" onClick={()=>{
+          
+        }}>
           Add Task
         </button>
       </form>
