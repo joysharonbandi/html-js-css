@@ -1,8 +1,85 @@
 <html>
     <head>
-        <link rel="stylesheet" href="style.css" />
-         <title>Resume Joy</title>
+      <link id="overlayCSS" rel="stylesheet" href="style.css" />
+           <title>Resume Joy</title>
 
+        <script>
+            // Function to check if CSS file loaded successfully
+            function checkCSSLoad() {
+                const cssLink = document.getElementById('overlayCSS');
+                const body = document.body;
+                
+                // Check if CSS link element exists
+                if (!cssLink) {
+                    console.warn('CSS link element not found - page will render without CSS dependency check');
+                    return; // Exit early if no CSS link element
+                }
+                
+                // Hide the body initially
+                body.style.display = 'none';
+                
+                // Check if CSS file loaded
+                function verifyCSSLoad() {
+                    try {
+                        // Check if the stylesheet object exists (this doesn't trigger CORS)
+                        const stylesheet = cssLink.sheet || cssLink.styleSheet;
+                        
+                        if (stylesheet) {
+                            // For same-origin CSS, we can safely check rules
+                            if (cssLink.href && cssLink.href.startsWith(window.location.origin)) {
+                                try {
+                                    const rules = stylesheet.cssRules || stylesheet.rules;
+                                    if (rules && rules.length > 0) {
+                                        body.style.display = 'block';
+                                        console.log('CSS file loaded successfully');
+                                        return;
+                                    }
+                                } catch (localError) {
+                                    console.warn('Local CSS rules access failed:', localError);
+                                }
+                            } else {
+                                // For cross-origin CSS, assume it loaded if stylesheet object exists
+                                body.style.display = 'block';
+                                console.log('Cross-origin CSS file loaded (stylesheet object exists)');
+                                return;
+                            }
+                        }
+                        
+                        // If we get here, CSS likely failed to load
+                        // showErrorPage('CSS file failed to load or is empty');
+                        
+                    } catch (error) {
+                        // CSS failed to load, show error and keep page hidden
+                        // showErrorPage('CSS file failed to load: ' + error.message);
+                        console.error('CSS verification failed:', error);
+                    }
+                }
+                
+                function showErrorPage(errorMessage) {
+                    body.innerHTML = "";
+                }
+                
+                // Check after a short delay to handle async loading
+                setTimeout(verifyCSSLoad, 500);
+                
+                // Listen for load and error events
+                cssLink.addEventListener('load', function() {
+                    body.style.display = 'block';
+                    console.log('CSS file loaded successfully');
+                });
+                
+                cssLink.addEventListener('error', function(event) {
+                    showErrorPage('Network error - CSS file not found or connection issue');
+                });
+            }
+            
+            // Run the check when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', checkCSSLoad);
+            } else {
+                checkCSSLoad();
+            }
+        </script>
         
     </head>
     <body>
